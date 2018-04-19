@@ -1,0 +1,252 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blank\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-04 15:27+0200\n"
+"PO-Revision-Date: 2016-10-04 15:27+0200\n"
+"Last-Translator: Vladimir Anokhin <ano.vladimir@gmail.com>\n"
+"Language-Team: Cherry Team <support@cherryframework.com>\n"
+"Language: su\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;__;_x;esc_html_e;esc_html__;esc_attr_e;"
+"esc_attr__;_x:1,2c;_n:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.7.6\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: jet-data-importer.php:132 jet-data-importer.php:133
+msgid "Demo Content "
+msgstr ""
+
+#: jet-data-importer.php:462
+msgid "Select or upload file with demo content"
+msgstr ""
+
+#: jet-data-importer.php:463
+msgid "Select"
+msgstr ""
+
+#: includes/class-jet-data-importer-tools.php:77
+msgid "Step 2: Importing sample data"
+msgstr ""
+
+#: includes/class-jet-data-importer-tools.php:80
+msgid "Import finished"
+msgstr ""
+
+#: includes/class-jet-data-importer-tools.php:83
+msgid "Step 1: Select source to import"
+msgstr ""
+
+#: includes/export/class-cherry-data-export-interface.php:51
+#: templates/export.php:8
+msgid "Export"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:95
+msgid "Import"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:183
+#: includes/import/class-jet-data-importer-interface.php:189
+#: includes/import/class-jet-data-importer-interface.php:447
+#: includes/import/class-jet-data-importer-interface.php:453
+msgid "You don't have permissions to do this"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:195
+msgid "Chunk number is missing in request"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:338
+msgid "Upload XML file with demo content"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:342
+msgid "We found 1 XML file with demo content in your theme, install it?"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:347
+#, php-format
+msgid ""
+"We found %s XML files in your theme. Please select one of them to install"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:429
+msgid "Upload File"
+msgstr ""
+
+#: includes/import/class-jet-data-importer-interface.php:459
+msgid "XML file not passed"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:628
+msgid "Cannot import auto-draft posts"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:969
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:994
+msgid "Site does not support widget"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1030
+msgid "Widget already exists"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1090
+msgid "Imported"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1093
+msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1100
+msgid "No Title"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1226
+#, php-format
+msgid "Failed to import \"%s\": Invalid post type %s"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1237
+#, php-format
+msgid "%s \"%s\" already exists."
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1316
+#, php-format
+msgid "Skipping attachment \"%s\", fetching attachments disabled"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1332
+#, php-format
+msgid "Failed to import \"%s\" (%s)"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1368
+#: includes/import/class-cherry-wxr-importer.php:1672
+#, php-format
+msgid "Imported \"%s\" (%s)"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1373
+#, php-format
+msgid "Post %d remapped to %d"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1510
+#, php-format
+msgid "Failed to import user \"%s\""
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1532
+#, php-format
+msgid "Imported user \"%s\""
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1537
+#, php-format
+msgid "User %d remapped to %d"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1637
+#, php-format
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:1677
+#, php-format
+msgid "Term %d remapped to %d"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2066
+msgid "Invalid file type"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2151
+#, php-format
+msgid "Remote server returned %1$d %2$s for %3$s"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2166
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2174
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2183
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: includes/import/class-cherry-wxr-importer.php:2352
+msgid "Could not open the file for parsing"
+msgstr ""
+
+#: includes/manifest/cherry-import-manifest.php:22
+msgid "Export all content with TemplateMonster Data Export tool"
+msgstr ""
+
+#: includes/manifest/cherry-import-manifest.php:28
+#: templates/import-after.php:15
+msgid "View your site"
+msgstr ""
+
+#: includes/manifest/cherry-import-manifest.php:34
+msgid "Customize your theme"
+msgstr ""
+
+#: templates/import-after.php:8
+msgid "What to do next?"
+msgstr ""
+
+#: templates/import-before.php:11
+msgid "or"
+msgstr ""
+
+#: templates/import-before.php:18
+msgid "Start import"
+msgstr ""
+
+#: templates/import.php:13
+msgid "Import Summary"
+msgstr ""
+
+#: templates/import.php:14
+msgid "Completed"
+msgstr ""
+
+#: templates/import.php:15
+msgid "Progress"
+msgstr ""
+
+#: templates/import.php:23
+msgid "Posts"
+msgstr ""
+
+#: templates/import.php:24
+msgid "Authors"
+msgstr ""
+
+#: templates/import.php:25
+msgid "Comments"
+msgstr ""
+
+#: templates/import.php:26
+msgid "Media"
+msgstr ""
+
+#: templates/import.php:27
+msgid "Terms"
+msgstr ""
