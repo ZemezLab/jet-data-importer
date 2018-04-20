@@ -247,7 +247,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				$menu .= sprintf( $menu_format, $this->get_tab_link( $tab['id'] ), $tab['name'], $current );
 			}
 
-			if ( apply_filters( 'cherry_data_importer_tabs_menu_visibility', true ) ) {
+			if ( apply_filters( 'jet-data-importer/tabs-menu-visibility', true ) ) {
 				printf( '<ul class="cdi-tabs__menu">%s</ul>', $menu );
 			}
 
