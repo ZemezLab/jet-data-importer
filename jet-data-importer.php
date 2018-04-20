@@ -104,11 +104,17 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			add_action( 'init', array( $this, 'init' ) );
 			add_action( 'admin_menu', array( $this, 'menu_page' ), 30 );
 
+			// 1st wizard compat
 			add_filter( 'tm_wizard_template_path', array( $this, 'wizard_success_page' ), 10, 2 );
 			add_filter( 'tm_wizard_notice_visibility', array( $this, 'wizard_notice_visibility' ) );
 
+			// 2nd wizard compat
 			add_filter( 'cherry_plugin_wizard_template_path', array( $this, 'wizard_success_page' ), 10, 2 );
 			add_filter( 'cherry_plugin_wizard_notice_visibility', array( $this, 'wizard_notice_visibility' ) );
+
+			// Current wizard compat
+			add_filter( 'jet-plugins-wizard/template-path', array( $this, 'wizard_success_page' ), 10, 2 );
+			add_filter( 'jet-plugins-wizard/notice-visibility', array( $this, 'wizard_notice_visibility' ) );
 
 			define( 'CHERRY_DEBUG', true );
 
@@ -147,6 +153,10 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			}
 
 			if ( function_exists( 'cherry_plugin_wizard_interface' ) && is_callable( array( cherry_plugin_wizard_interface(), 'get_skin_data' ) ) ) {
+				return jdi()->path( 'templates/wizard-after-install.php' );
+			}
+
+			if ( function_exists( 'jet_plugins_wizard_interface' ) && is_callable( array( jet_plugins_wizard_interface(), 'get_skin_data' ) ) ) {
 				return jdi()->path( 'templates/wizard-after-install.php' );
 			}
 
@@ -394,8 +404,62 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 						$this->external_config[ $type ],
 						$this->settings[ $type ]
 					);
+
+					if ( 'advanced_import' === $type && isset( $this->settings[ $type ]['from_path'] ) ) {
+						$this->settings[ $type ] = $this->get_remote_skins( $this->settings[ $type ]['from_path'] );
+					}
+
 				}
 			}
+
+		}
+
+		/**
+		 * Get remote skins if config provides URL for scins API
+		 *
+		 * @param  string $url API URL to get skins from.
+		 * @return array
+		 */
+		public function get_remote_skins( $url ) {
+
+			$transient = 'jet_wizard_skins';
+			$data      = get_site_transient( $transient );
+
+			if ( ! $data ) {
+
+				$response = wp_remote_get( $url, array(
+					'timeout'   => 60,
+					'sslverify' => false,
+				) );
+
+				$data = wp_remote_retrieve_body( $response );
+				$data = json_decode( $data, true );
+
+				if ( empty( $data ) ) {
+					$data = array();
+				}
+
+				set_transient( $transient, $data, 2 * DAY_IN_SECONDS );
+
+			}
+
+			$result = array();
+
+			if ( ! isset( $data['advanced'] ) ) {
+				return $result;
+			}
+
+			foreach ( $data['advanced'] as $slug => $skin ) {
+				$result[ $slug ] = array(
+					'label'    => $skin['name'],
+					'full'     => $skin['full_xml'],
+					'lite'     => $skin['lite_xml'],
+					'thumb'    => $skin['thumb'],
+					'demo_url' => $skin['demo'],
+				);
+			}
+
+			return $result;
 
 		}
 

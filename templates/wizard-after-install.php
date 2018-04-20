@@ -5,15 +5,19 @@
 
 if ( function_exists( 'cherry_plugin_wizard_interface' ) ) {
 	$skin     = cherry_plugin_wizard_interface()->get_skin_data( 'slug' );
-	$referrer = 'jet-plugin-wizard';
+	$referrer = 'cherry-plugin-wizard';
 } elseif ( function_exists( 'tm_wizard_interface' ) ) {
 	$skin     = tm_wizard_interface()->get_skin_data( 'slug' );
 	$referrer = 'tm-wizard';
+} elseif ( function_exists( 'jet_plugins_wizard_interface' ) ) {
+	$skin     = jet_plugins_wizard_interface()->get_skin_data( 'slug' );
+	$referrer = 'jet-plugins-wizard';
 }
 
 $type = ! empty( $_GET['type'] ) ? esc_attr( $_GET['type'] ) : 'lite';
 $file = jdi()->get_setting( array( 'advanced_import', $skin, $type ) );
 $file = jdi_tools()->secure_path( $file );
+
 ?>
 <h2><?php esc_html_e( 'We\'re almost there!', 'jet-data-importer' ); ?></h2>
 
