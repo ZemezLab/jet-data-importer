@@ -116,8 +116,6 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			add_filter( 'jet-plugins-wizard/template-path', array( $this, 'wizard_success_page' ), 10, 2 );
 			add_filter( 'jet-plugins-wizard/notice-visibility', array( $this, 'wizard_notice_visibility' ) );
 
-			define( 'CHERRY_DEBUG', true );
-
 		}
 
 		/**
@@ -439,7 +437,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 					$data = array();
 				}
 
-				set_transient( $transient, $data, 2 * DAY_IN_SECONDS );
+				set_site_transient( $transient, $data, 2 * DAY_IN_SECONDS );
 
 			}
 
@@ -555,15 +553,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 		 * @return string
 		 */
 		public function assets_url( $path ) {
-
-			if ( defined( 'CHERRY_DEBUG' ) && true === CHERRY_DEBUG ) {
-				$path = str_replace( array( '..', '//' ), array( '.', '/' ), sprintf( $path, null ) );
-			} else {
-				$path = sprintf( $path, 'min' );
-			}
-
 			return $this->url( 'assets/' . $path );
-
 		}
 
 		/**
@@ -577,7 +567,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 
 			wp_register_script(
 				'jet-data-import',
-				$this->assets_url( 'js/%s/jet-data-import.js' ),
+				$this->assets_url( 'js/jet-data-import.js' ),
 				array(),
 				'1.0.0',
 				true
@@ -585,7 +575,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 
 			wp_register_script(
 				'jet-data-export',
-				$this->assets_url( 'js/%s/jet-data-export.js' ),
+				$this->assets_url( 'js/jet-data-export.js' ),
 				array(),
 				'1.0.0',
 				true
@@ -596,7 +586,9 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				'autorun'      => $this->import_autorun(),
 				'uploadTitle'  => esc_html__( 'Select or upload file with demo content', 'jet-data-importer' ),
 				'uploadBtn'    => esc_html__( 'Select', 'jet-data-importer' ),
-				'file'         => ( isset( $_GET['file'] ) ) ? esc_attr( $_GET['file'] ) : false,
+				'file'         => ( isset( $_REQUEST['file'] ) ) ? esc_attr( $_REQUEST['file'] ) : false,
+				'skin'         => ( isset( $_REQUEST['skin'] ) ) ? esc_attr( $_REQUEST['skin'] ) : 'default',
+				'xml_type'     => ( isset( $_REQUEST['xml_type'] ) ) ? esc_attr( $_REQUEST['xml_type'] ) : 'lite',
 				'tab'          => jdi_interface()->slug,
 				'error'        => esc_html__( 'Data processing error, please try again!', 'jet-data-importer' ),
 				'advURLMask'   => $this->page_url( array( 'tab' => 'import', 'step' => 2, 'file' => '<-file->' ) ),

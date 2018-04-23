@@ -38,6 +38,13 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 		private $importer = null;
 
 		/**
+		 * Path to import file
+		 *
+		 * @var string|bool
+		 */
+		private $import_file = null;
+
+		/**
 		 * Returns XML-files count
 		 *
 		 * @var int
@@ -311,6 +318,12 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			}
 
 			$importer = $this->get_importer();
+
+			if ( ! $importer ) {
+				_e( 'Error! Import file not found. Please contact our support team.', 'jet-theme-core' );
+				return;
+			}
+
 			$importer->prepare_import();
 
 			$count        = jdi_cache()->get( 'total_count' );
@@ -510,6 +523,13 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 						'redirect'  => $redirect,
 					);
 
+					// Remove XML file after successfull import.
+					$file = $this->get_import_file();
+
+					if ( $file ) {
+						unlink( $file );
+					}
+
 					break;
 
 				default:
@@ -552,9 +572,30 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			require_once jdi()->path( 'includes/import/class-jet-wxr-importer.php' );
 
 			$options = array();
-			$file    = null;
+			$file    = $this->get_import_file();
 
-			if ( isset( $_REQUEST['file'] ) ) {
+			if ( ! $file ) {
+				return false;
+			}
+
+			return $this->importer = new Jet_WXR_Importer( $options, $file );
+
+		}
+
+		/**
+		 * Get path to imported XML file
+		 *
+		 * @return [type] [description]
+		 */
+		public function get_import_file() {
+
+			if ( null !== $this->import_file ) {
+				return $this->import_file;
+			}
+
+			$file = null;
+
+			if ( ! empty( $_REQUEST['file'] ) ) {
 				$file = jdi_tools()->esc_path( esc_attr( $_REQUEST['file'] ) );
 			}
 
@@ -566,7 +607,61 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				$file = $file[0];
 			}
 
-			return $this->importer = new Jet_WXR_Importer( $options, $file );
+			if ( isset( $_REQUEST['file'] ) && 'remote' === $_REQUEST['file'] ) {
+
+				$import_settings = jdi()->get_setting( array( 'advanced_import' ) );
+				$slug            = isset( $_REQUEST['skin'] ) ? esc_attr( $_REQUEST['skin'] ) : 'default';
+				$xml_type        = isset( $_REQUEST['xml_type'] ) ? esc_attr( $_REQUEST['xml_type'] ) : 'lite';
+
+				if ( isset( $import_settings[ $slug ][ $xml_type ] ) ) {
+					$file = $this->get_remote_file( $import_settings[ $slug ][ $xml_type ] );
+				}
+
+			}
+
+			if ( ! $file ) {
+				return false;
+			} else {
+				$this->import_file = $file;
+				return $this->import_file;
+			}
+
+		}
+
+		/**
+		 * Get remoe file by URL
+		 *
+		 * @param  [type] $file_path [description]
+		 * @return [type]            [description]
+		 */
+		public function get_remote_file( $file_url ) {
+
+			$filename        = basename( $file_url );
+			$upload_dir      = wp_upload_dir();
+			$upload_base_dir = $upload_dir['basedir'];
+			$base_path       = trailingslashit( $upload_base_dir ) . 'jet-skins/';
+
+			if ( file_exists( $base_path . $filename ) ) {
+				return $base_path . $filename;
+			}
+
+			if ( ! file_exists( $base_path ) ) {
+				mkdir( $base_path );
+			}
+
+			$tmpath = download_url( esc_url( $file_url ) );
+
+			if ( ! $tmpath ) {
+				return false;
+			}
+
+			if ( ! copy( $tmpath, $base_path . $filename ) ) {
+				return false;
+			}
+
+			unlink( $tmpath );
+
+			return $base_path . $filename;
 		}
 
 		/**

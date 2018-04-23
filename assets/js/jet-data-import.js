@@ -213,8 +213,10 @@
 
 			var complete;
 
-			data.nonce = window.JetDataImportVars.nonce;
-			data.file  = window.JetDataImportVars.file;
+			data.nonce    = window.JetDataImportVars.nonce;
+			data.file     = window.JetDataImportVars.file;
+			data.skin     = window.JetDataImportVars.skin;
+			data.xml_type = window.JetDataImportVars.xml_type;
 
 			$.ajax({
 				url: window.ajaxurl,

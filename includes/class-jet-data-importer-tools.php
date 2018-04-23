@@ -168,6 +168,11 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 		 * @return string
 		 */
 		public function secure_path( $file ) {
+
+			if ( false === strpos( $file, ABSPATH ) ) {
+				return 'remote';
+			}
+
 			return base64_encode( str_replace( ABSPATH, '', $file ) );
 		}
 
@@ -178,6 +183,11 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 		 * @return string
 		 */
 		public function esc_path( $file ) {
+
+			if ( 'remote' === $file ) {
+				return false;
+			}
+
 			return ABSPATH . base64_decode( $file );
 		}
 

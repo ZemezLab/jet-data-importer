@@ -72,7 +72,7 @@ if ( ! class_exists( 'Jet_WXR_Exporter' ) ) {
 					'permalink_structure',
 					$theme . '_sidebars',
 					$theme . '_sidbars',
-
+					'jet_site_conditions',
 				) );
 
 				$user_options = jdi()->get_setting( array( 'export', 'options' ) );

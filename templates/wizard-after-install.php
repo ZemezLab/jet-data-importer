@@ -15,8 +15,10 @@ if ( function_exists( 'cherry_plugin_wizard_interface' ) ) {
 }
 
 $type = ! empty( $_GET['type'] ) ? esc_attr( $_GET['type'] ) : 'lite';
+
 $file = jdi()->get_setting( array( 'advanced_import', $skin, $type ) );
 $file = jdi_tools()->secure_path( $file );
+
 
 ?>
 <h2><?php esc_html_e( 'We\'re almost there!', 'jet-data-importer' ); ?></h2>
@@ -68,6 +70,8 @@ $file = jdi_tools()->secure_path( $file );
 	<input type="hidden" name="file" value="<?php echo $file; ?>">
 	<input type="hidden" name="page" value="<?php echo jdi()->slug; ?>">
 	<input type="hidden" name="referrer" value="<?php echo $referrer; ?>">
+	<input type="hidden" name="skin" value="<?php echo $skin; ?>">
+	<input type="hidden" name="xml_type" value="<?php echo $type; ?>">
 	<button class="btn btn-primary" data-wizard="confirm-install" data-loader="true" data-href=""><span class="text"><?php
 		esc_html_e( 'Next', 'tm-wizard' );
 	?></span><span class="tm-wizard-loader"><span class="tm-wizard-loader__spinner"></span></span></button>
