@@ -2309,41 +2309,21 @@ class Jet_WXR_Importer extends WP_Importer {
 	 * @return array|WP_Error Local file location details on success, WP_Error otherwise.
 	 */
 	protected function fetch_remote_file( $url, $post ) {
+
 		// extract the file name and extension from the url
 		$file_name = basename( $url );
 
+		$file_content = wp_remote_retrieve_body( wp_safe_remote_get( $url ) );
+
+		if ( empty( $file_content ) ) {
+			return false;
+		}
+
 		// get placeholder file in the upload dir with a unique, sanitized filename
-		$upload = wp_upload_bits( $file_name, 0, '', $post['upload_date'] );
+		$upload = wp_upload_bits( $file_name, '', $file_content, $post['upload_date'] );
+
 		if ( $upload['error'] ) {
 			return new WP_Error( 'upload_dir_error', $upload['error'] );
-		}
-
-		// fetch the remote url and write it to the placeholder file
-		$response = wp_remote_get( $url, array(
-			'stream'   => true,
-			'filename' => $upload['file']
-		) );
-
-		// request failed
-		if ( is_wp_error( $response ) ) {
-			@unlink( $upload['file'] );
-			return $response;
-		}
-
-		$code = (int) wp_remote_retrieve_response_code( $response );
-
-		// make sure the fetch was successful
-		if ( $code !== 200 ) {
-			@unlink( $upload['file'] );
-			return new WP_Error(
-				'import_file_error',
-				sprintf(
-					__( 'Remote server returned %1$d %2$s for %3$s', 'jet-data-importer' ),
-					$code,
-					get_status_header_desc( $code ),
-					$url
-				)
-			);
 		}
 
 		$filesize = filesize( $upload['file'] );

@@ -381,6 +381,16 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				return false;
 			}
 
+			$total = 0;
+
+			if ( ! empty( $count['image/jpeg'] ) ) {
+				$total += absint( $count['image/jpeg'] );
+			}
+
+			if ( ! empty( $count['image/jpeg'] ) ) {
+				$total += absint( $count['image/png'] );
+			}
+
 			if ( 0 === $total ) {
 				return false;
 			}
