@@ -58,7 +58,7 @@ $config = array(
 	),
 	or
 	'advanced_import' => array(
-		'from_path' => 'http://192.168.9.40/_2018/04_April/crocoblock-api/wp-content/uploads/static/wizard-skins.json'
+		'from_path' => 'https://account.crocoblock.com/wp-content/uploads/static/wizard-skins.json'
 	),
 	 */
 );
