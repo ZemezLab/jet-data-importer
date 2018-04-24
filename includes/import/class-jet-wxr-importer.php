@@ -954,6 +954,11 @@ class Jet_WXR_Importer extends WP_Importer {
 
 		foreach ( $data as $key => $value ) {
 			$value = $this->maybe_decode( $value );
+
+			if ( empty( $value ) ) {
+				continue;
+			}
+
 			update_option( $key, $value );
 
 			$this->maybe_clone_child_options( $key, $value );

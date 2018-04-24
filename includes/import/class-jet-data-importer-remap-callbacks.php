@@ -41,10 +41,12 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 		 * Constructor for the class
 		 */
 		public function __construct() {
+
 			// Manipulations with posts remap array
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_options' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'postprocess_posts' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_thumbs' ) );
+			//add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_img' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_home_page' ) );
 
 			// Manipulations with terms remap array
@@ -52,6 +54,16 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_nav_menu' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_nav_menu_widgets' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_home_page' ) );
+
+		}
+
+		/**
+		 * Remap elementor images
+		 *
+		 * @todo   remplace images in elementor widgets with imported.
+		 * @return void
+		 */
+		public function process_elementor_img( $data ) {
 
 		}
 
@@ -420,6 +432,33 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 				update_option( $key, $data[ $current ] );
 
 			}
+
+			// Update Jet Theme Core conditions
+			$conditions = get_option( 'jet_site_conditions' );
+
+			if ( ! empty( $conditions ) ) {
+
+				$new_conditions = array();
+
+				foreach ( $conditions as $location => $condition ) {
+
+					$new_conditions[ $location ] = array();
+
+					foreach ( $condition as $template_id => $rules ) {
+
+						if ( isset( $data[ $template_id ] ) ) {
+							$new_conditions[ $location ][ $data[ $template_id ] ] = $rules;
+						} else {
+							$new_conditions[ $location ][ $template_id ] = $rules;
+						}
+
+					}
+				}
+
+				update_option( 'jet_site_conditions', $new_conditions );
+
+			}
+
 
 		}
 
