@@ -41,7 +41,7 @@ $config = array(
 		),
 	),
 	'slider' => array(
-		'path' => 'https://raw.githubusercontent.com/templatemonster/tm-wizard-slider/master/slides.json',
+		'path' => 'https://raw.githubusercontent.com/ZemezLab/kava-slider/master/slides.json',
 	),
 	/*
 	'advanced_import' => array(
