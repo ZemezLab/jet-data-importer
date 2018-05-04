@@ -46,7 +46,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_options' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'postprocess_posts' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_thumbs' ) );
-			//add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_img' ) );
+			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_img' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_home_page' ) );
 
 			// Manipulations with terms remap array
@@ -64,6 +64,35 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 		 * @return void
 		 */
 		public function process_elementor_img( $data ) {
+
+			$pages = get_pages();
+
+			foreach ( $pages as $page ) {
+
+				$elementor_data = get_post_meta( $page->ID, '_elementor_data', true );
+
+				if ( empty( $elementor_data ) ) {
+					continue;
+				}
+
+				$new_data = preg_replace_callback( '/"id":(\d+),"url":"(.*?)"/', function( $match ) use ( $data ) {
+
+					if ( isset( $data[ $match[1] ] ) ) {
+						return sprintf(
+							'"id":%1$s,"url":%2$s',
+							$data[ $match[1] ],
+							json_encode( wp_get_attachment_url( $data[ $match[1] ] ) )
+						);
+					} else {
+						return $match[0];
+					}
+
+				}, $elementor_data );
+
+				update_post_meta( $page->ID, '_elementor_data', wp_slash( $new_data ) );
+
+			}
+
 
 		}
 
