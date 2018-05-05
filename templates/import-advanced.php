@@ -16,8 +16,9 @@ $plugins  = ! empty( $item['plugins'] )  ? $item['plugins']             : false;
 $xml_full = ! empty( $item['full'] )     ? $item['full']                : false;
 $xml_min  = ! empty( $item['lite'] )     ? $item['lite']                : false;
 
-$full_path = jdi_tools()->secure_path( $xml_full );
-$min_path  = jdi_tools()->secure_path( $xml_min );
+$full_path   = jdi_tools()->secure_path( $xml_full );
+$min_path    = jdi_tools()->secure_path( $xml_min );
+$allow_types = jdi()->get_setting( array( 'import', 'allow_types' ) );
 
 ?>
 <div class="advanced-item" data-full="<?php echo $full_path; ?>" data-lite="<?php echo $min_path; ?>">
@@ -45,12 +46,14 @@ $min_path  = jdi_tools()->secure_path( $xml_min );
 			}
 		?></div>
 		<?php endif; ?>
+		<?php if ( $allow_types ) : ?>
 		<div class="advanced-item__install-type">
 			<label class="advanced-item__type-checkbox">
 				<input type="checkbox"><?php esc_html_e( 'Optimize Demo Content', 'jet-data-importer' ); ?>
 			</label>
 			<?php esc_html_e( 'Please select this option to install light version of demo content. Recommended for slow severs and shared web hosts', 'jet-data-importer' ); ?>
 		</div>
+		<?php endif; ?>
 		<div class="advanced-item__install">
 			<button class="cdi-btn primary" data-action="start-install"><span class="text"><?php
 				esc_html_e( 'Install Demo', 'jet-data-importer' );

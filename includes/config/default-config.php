@@ -10,10 +10,10 @@ $config = array(
 		'use_upload' => true,
 		'path'       => false,
 	),
-	'advanced_import' => false,
 	'import' => array(
 		'chunk_size'            => $this->chunk_size,
 		'regenerate_chunk_size' => 3,
+		'allow_types'           => false,
 	),
 	'remap' => array(
 		'post_meta' => array(),
@@ -43,6 +43,9 @@ $config = array(
 	'slider' => array(
 		'path' => 'https://raw.githubusercontent.com/ZemezLab/kava-slider/master/slides.json',
 	),
+	'advanced_import' => array(
+		'from_path' => 'https://account.crocoblock.com/wp-content/uploads/static/wizard-skins.json'
+	)
 	/*
 	'advanced_import' => array(
 		'default' => array(
