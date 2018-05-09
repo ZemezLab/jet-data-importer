@@ -391,6 +391,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 		public function set_theme_settings() {
 
 			if ( empty( $this->external_config ) ) {
+				$this->maybe_get_remote_skins();
 				return;
 			}
 
@@ -409,6 +410,27 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 
 				}
 			}
+
+		}
+
+		/**
+		 * If 3-rd party config not passed - check maybe we need to get default remote config.
+		 *
+		 * @return [type] [description]
+		 */
+		public function maybe_get_remote_skins() {
+
+			if ( ! isset( $this->settings['advanced_import'] ) ) {
+				return;
+			}
+
+			if ( ! isset( $this->settings['advanced_import']['from_path'] ) ) {
+				return;
+			}
+
+			$this->settings['advanced_import'] = $this->get_remote_skins(
+				$this->settings['advanced_import']['from_path']
+			);
 
 		}
 
