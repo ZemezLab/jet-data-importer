@@ -948,11 +948,14 @@ class Jet_WXR_Importer extends WP_Importer {
 	 */
 	protected function process_options( $data ) {
 
+		do_action( 'jet-data-importer/import/before-options-processing', $data );
+
 		if ( empty( $data ) ) {
 			return;
 		}
 
 		foreach ( $data as $key => $value ) {
+
 			$value = $this->maybe_decode( $value );
 
 			if ( empty( $value ) ) {

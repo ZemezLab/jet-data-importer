@@ -35,7 +35,20 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 			add_action( 'jet-data-importer/import/finish', array( $this, 'clear_fonts_cache' ) );
 
 			// Allow switch Monstroid2 skins
-			add_action( 'jet-data-importer/import/before-skip-redirect', array( $this, 'switch_skin_on_skip_import' ) );
+			add_action( 'jet-data-importer/import/before-skip-redirect', array( $this, 'switch_skin_on_skip' ) );
+
+			add_action( 'jet-data-importer/import/before-options-processing', array( $this, 'set_container_width' ) );
+		}
+
+		/**
+		 * Preset elemntor container width if it was not passed in XML
+		 */
+		public function set_container_width( $data ) {
+
+			if ( ! isset( $data['elementor_container_width'] ) ) {
+				update_option( 'elementor_container_width', 1200 );
+			}
+
 		}
 
 		/**
@@ -43,7 +56,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 		 *
 		 * @return null
 		 */
-		public function switch_skin_on_skip_import() {
+		public function switch_skin_on_skip() {
 
 			if ( ! isset( $_GET['file'] ) ) {
 				return;
@@ -104,6 +117,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 		 */
 		public function clear_fonts_cache() {
 			delete_transient( 'cherry_google_fonts_url' );
+			delete_transient( 'cx_google_fonts_url_kava' );
 		}
 
 		/**

@@ -80,7 +80,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 						$title = esc_html__( 'Regenerating thumbnails', 'jet-data-importer' );
 						break;
 					case 4:
-						$title = esc_html__( 'Congratulations, you are all set!', 'jet-data-importer' );
+						$title = esc_html__( 'Congratulations! You’re all Set!', 'jet-data-importer' );
 						break;
 					default:
 						$title = esc_html__( 'Select source to import', 'jet-data-importer' );
