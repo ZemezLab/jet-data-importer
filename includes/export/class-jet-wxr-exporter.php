@@ -74,6 +74,7 @@ if ( ! class_exists( 'Jet_WXR_Exporter' ) ) {
 					$theme . '_sidbars',
 					'jet_site_conditions',
 					'elementor_container_width',
+					'jet-elements-settings',
 				) );
 
 				$user_options = jdi()->get_setting( array( 'export', 'options' ) );
