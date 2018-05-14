@@ -533,10 +533,10 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 						'redirect'  => $redirect,
 					);
 
-					// Remove XML file after successfull import.
+					// Remove XML file for remote files after successfull import.
 					$file = $this->get_import_file();
 
-					if ( $file ) {
+					if ( $file && isset( $_REQUEST['file'] ) && 'remote' === $_REQUEST['file'] ) {
 						unlink( $file );
 					}
 

@@ -397,12 +397,25 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 
 			$allowed_settings = array_keys( $this->settings );
 
+			/**
+			 * List of settings that should be rewritten from 3rd party source instead of merging
+			 */
+			$rewrite = apply_filters( 'jet-data-importer/settings/rewrite-keys', array(
+				'success-links',
+				'advanced_import',
+			) );
+
 			foreach ( $allowed_settings as $type ) {
 				if ( ! empty( $this->external_config[ $type ] ) ) {
-					$this->settings[ $type ] = wp_parse_args(
-						$this->external_config[ $type ],
-						$this->settings[ $type ]
-					);
+
+					if ( in_array( $type, $rewrite ) ) {
+						$this->settings[ $type ] = $this->external_config[ $type ];
+					} else {
+						$this->settings[ $type ] = wp_parse_args(
+							$this->external_config[ $type ],
+							$this->settings[ $type ]
+						);
+					}
 
 					if ( 'advanced_import' === $type && isset( $this->settings[ $type ]['from_path'] ) ) {
 						$this->settings[ $type ] = $this->get_remote_skins( $this->settings[ $type ]['from_path'] );

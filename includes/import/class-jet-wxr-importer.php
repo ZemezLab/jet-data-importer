@@ -1271,7 +1271,7 @@ class Jet_WXR_Importer extends WP_Importer {
 				$sidebars_widgets['wp_inactive_widgets'] = array_merge( $inactive_widgets, $added_widgets );
 			} else {
 
-				$existing_widgets = $sidebars_widgets[ $use_sidebar_id ];
+				$existing_widgets = isset( $sidebars_widgets[ $use_sidebar_id ] ) ? $sidebars_widgets[ $use_sidebar_id ] : array();
 
 				if ( empty( $existing_widgets ) ) {
 					$existing_widgets = array();
