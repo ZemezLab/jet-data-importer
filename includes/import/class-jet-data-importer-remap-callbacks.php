@@ -65,7 +65,10 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 		 */
 		public function process_elementor_img( $data ) {
 
-			$pages = get_pages();
+			$pages = get_posts( array(
+				'post_type'      => array( 'page', 'jet-theme-core', 'elementor_library' ),
+				'posts_per_page' => -1,
+			) );
 
 			foreach ( $pages as $page ) {
 
@@ -88,6 +91,28 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 					}
 
 				}, $elementor_data );
+
+				$ids_keys = apply_filters( 'jet-data-importer/import/posts/elementor-ids-to-remap', array(
+					'panel_template_id',
+					'item_template_id',
+				) );
+
+				$ids_keys  = implode( '|', $ids_keys );
+				$ids_regex = "/\\\"({$ids_keys})\\\":\\\"(\d+)\\\"/";
+
+				$new_data = preg_replace_callback( $ids_regex, function( $match ) use ( $data ) {
+
+					if ( isset( $data[ $match[2] ] ) ) {
+						return sprintf(
+							'"%1$s":"%2$s"',
+							$match[1],
+							$data[ $match[2] ]
+						);
+					} else {
+						return $match[0];
+					}
+
+				}, $new_data );
 
 				update_post_meta( $page->ID, '_elementor_data', wp_slash( $new_data ) );
 
