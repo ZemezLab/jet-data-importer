@@ -967,6 +967,8 @@ class Jet_WXR_Importer extends WP_Importer {
 			$this->maybe_clone_child_options( $key, $value );
 		}
 
+		do_action( 'jet-data-importer/import/after-options-processing', $data );
+
 	}
 
 	/**

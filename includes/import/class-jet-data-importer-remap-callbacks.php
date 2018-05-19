@@ -78,19 +78,23 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 					continue;
 				}
 
-				$new_data = preg_replace_callback( '/"id":(\d+),"url":"(.*?)"/', function( $match ) use ( $data ) {
+				$new_data = preg_replace_callback(
+					'/\"id\":\"?(\d+)\"?,\"url\":\"(.*?)\"/',
+					function( $match ) use ( $data ) {
 
-					if ( isset( $data[ $match[1] ] ) ) {
-						return sprintf(
-							'"id":%1$s,"url":%2$s',
-							$data[ $match[1] ],
-							json_encode( wp_get_attachment_url( $data[ $match[1] ] ) )
-						);
-					} else {
-						return $match[0];
-					}
+						if ( isset( $data[ $match[1] ] ) ) {
+							return sprintf(
+								'"id":%1$s,"url":%2$s',
+								$data[ $match[1] ],
+								json_encode( wp_get_attachment_url( $data[ $match[1] ] ) )
+							);
+						} else {
+							return $match[0];
+						}
 
-				}, $elementor_data );
+					},
+					$elementor_data
+				);
 
 				$ids_keys = apply_filters( 'jet-data-importer/import/posts/elementor-ids-to-remap', array(
 					'panel_template_id',

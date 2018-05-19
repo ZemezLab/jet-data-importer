@@ -38,6 +38,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 			add_action( 'jet-data-importer/import/before-skip-redirect', array( $this, 'switch_skin_on_skip' ) );
 
 			add_action( 'jet-data-importer/import/before-options-processing', array( $this, 'set_container_width' ) );
+			add_action( 'jet-data-importer/import/after-options-processing', array( $this, 'set_required_options' ) );
 		}
 
 		/**
@@ -47,6 +48,41 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 
 			if ( ! isset( $data['elementor_container_width'] ) ) {
 				update_option( 'elementor_container_width', 1200 );
+			}
+
+		}
+
+		/**
+		 * Set required Kava Extra and Jet Elements options
+		 */
+		public function set_required_options() {
+
+			if ( class_exists( 'Kava_Extra' ) ) {
+
+				$options = get_option( 'kava-extra-settings' );
+
+				if ( ! $options ) {
+					update_option( 'kava-extra-settings', array(
+						'nucleo-mini-package' => 'true',
+					) );
+				}
+
+				unset( $options );
+
+			}
+
+			if ( class_exists( 'Jet_Elements' ) ) {
+
+				$options = get_option( 'jet-elements-settings' );
+
+				if ( empty( $options ) ) {
+					$options = array();
+				}
+
+				if ( empty( $options['api_key'] ) ) {
+					$options['api_key'] = 'AIzaSyDlhgz2x94h0UZb7kZXOBjwAtszoCRtDLM';
+				}
+
 			}
 
 		}
