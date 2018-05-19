@@ -83,6 +83,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 					$options['api_key'] = 'AIzaSyDlhgz2x94h0UZb7kZXOBjwAtszoCRtDLM';
 				}
 
+				update_option( 'jet-elements-settings', $options );
+
 			}
 
 		}
