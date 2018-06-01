@@ -30,6 +30,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 		 */
 		public $terms = array();
 
+		public $pages = null;
+
 		/**
 		 * Store processed shortcodes data
 		 *
@@ -46,14 +48,28 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_options' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'postprocess_posts' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_thumbs' ) );
-			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_img' ) );
+			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_pages_posts' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_home_page' ) );
 
 			// Manipulations with terms remap array
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_term_parents' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_nav_menu' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_nav_menu_widgets' ) );
+			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_elementor_pages_terms' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_home_page' ) );
+
+		}
+
+		public function elementor_pages() {
+
+			if ( null === $this->pages ) {
+				$this->pages = get_posts( array(
+					'post_type'      => array( 'page', 'jet-theme-core', 'elementor_library' ),
+					'posts_per_page' => -1,
+				) );
+			}
+
+			return $this->pages;
 
 		}
 
@@ -63,12 +79,9 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 		 * @todo   remplace images in elementor widgets with imported.
 		 * @return void
 		 */
-		public function process_elementor_img( $data ) {
+		public function process_elementor_pages_posts( $data ) {
 
-			$pages = get_posts( array(
-				'post_type'      => array( 'page', 'jet-theme-core', 'elementor_library' ),
-				'posts_per_page' => -1,
-			) );
+			$pages = $this->elementor_pages();
 
 			foreach ( $pages as $page ) {
 
@@ -122,6 +135,54 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 
 			}
 
+		}
+
+		public function process_elementor_pages_terms( $data ) {
+
+			$pages    = $this->elementor_pages();
+			$ids_keys = apply_filters( 'jet-data-importer/import/terms/elementor-ids-to-remap', array(
+				'category_ids',
+				'menu',
+				'nav_menu',
+			) );
+
+			$ids_keys = implode( '|', $ids_keys );
+			$regex    = '\"(' . $ids_keys . ')\":(\".*?\"|\[.*?\])';
+
+			foreach ( $pages as $page ) {
+
+				$elementor_data = get_post_meta( $page->ID, '_elementor_data', true );
+
+				if ( empty( $elementor_data ) ) {
+					continue;
+				}
+
+				$new_data = preg_replace_callback( '/' . $regex . '/', function( $match ) use ( $data ) {
+
+					$val = json_decode( $match[2], true );
+
+					if ( ! is_array( $val ) ) {
+						$new = isset( $data[ $val ] ) ? $data[ $val ] : $val;
+						$new = '"' . $new . '"';
+					} else {
+						$new = array();
+						foreach ( $val as $old_id ) {
+							$new = isset( $data[ $old_id ] ) ? $data[ $old_id ] : $old_id;
+						}
+						$new = json_encode( $new );
+					}
+
+					return sprintf(
+						'"%1$s":%2$s',
+						$match[1],
+						$new
+					);
+
+				}, $elementor_data );
+
+				update_post_meta( $page->ID, '_elementor_data', wp_slash( $new_data ) );
+
+			}
 
 		}
 
