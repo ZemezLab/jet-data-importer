@@ -3,15 +3,15 @@
  * Template part for displaying advanced popup
  */
 
-if ( function_exists( 'cherry_plugin_wizard_interface' ) ) {
-	$skin     = cherry_plugin_wizard_interface()->get_skin_data( 'slug' );
-	$referrer = 'cherry-plugin-wizard';
+if ( function_exists( 'jet_plugins_wizard_interface' ) ) {
+	$skin     = jet_plugins_wizard_interface()->get_skin_data( 'slug' );
+	$referrer = 'jet-plugins-wizard';
 } elseif ( function_exists( 'tm_wizard_interface' ) ) {
 	$skin     = tm_wizard_interface()->get_skin_data( 'slug' );
 	$referrer = 'tm-wizard';
-} elseif ( function_exists( 'jet_plugins_wizard_interface' ) ) {
-	$skin     = jet_plugins_wizard_interface()->get_skin_data( 'slug' );
-	$referrer = 'jet-plugins-wizard';
+} elseif ( function_exists( 'cherry_plugin_wizard_interface' ) ) {
+	$skin     = cherry_plugin_wizard_interface()->get_skin_data( 'slug' );
+	$referrer = 'cherry-plugin-wizard';
 }
 
 $type = ! empty( $_GET['type'] ) ? esc_attr( $_GET['type'] ) : 'lite';
