@@ -13,6 +13,42 @@ $bordersColor:    rgba(0,0,0,0.1);
 $textColor:       #23282d;
 $bodyColor:       #fff;
 
+$normal_bg_color: #e1e1e1;
+$normal_gradint_1: #ffffff;
+$normal_gradint_2: #f0f0f0;
+$normal_outset_1: #d7d7d7;
+$normal_outset_2: #b7b7b7;
+
+$primary_bg_color: #206ff4;
+$primary_gradint_1: #5fadff;
+$primary_gradint_2: #2a90fc;
+$primary_outset_1: #5b9add;
+$primary_outset_2: #3e6a99;
+
+$secondary_bg_color: #495159;
+$secondary_gradint_1: #4c5054;
+$secondary_gradint_2: #495159;
+$secondary_outset_1: #777879;
+$secondary_outset_2: #41464d;
+
+$success_bg_color: #3ba956;
+$success_gradint_1: #71e18f;
+$success_gradint_2: #49c66a;
+$success_outset_1: #49c56a;
+$success_outset_2: #3a9e54;
+
+$danger_bg_color: #c73434;
+$danger_gradint_1: #f98888;
+$danger_gradint_2: #e64545;
+$danger_outset_1: #e54444;
+$danger_outset_2: #b83636;
+
+$warning_bg_color: #ee8425;
+$warning_gradint_1: #ffcb81;
+$warning_gradint_2: #faa832;
+$warning_outset_1: #faa832;
+$warning_outset_2: #c98627;
+
 .cdi-kit {
 	background: $bodyColor;
 	color: $textColor;
@@ -60,14 +96,20 @@ $bodyColor:       #fff;
 	select,
 	input[type="text"],
 	input[type="password"] {
-		padding: 15px 20px;
+		padding: 5px 8px;
 		border: none;
 		border-radius: 2px;
+		border: 1px solid $bordersColor;
 		background: $inputColor;
-		line-height: 20px;
-		height: 50px;
+		line-height: 16px;
+		min-height: 28px;
+		vertical-align: top;
+		margin: 0;
 		&:focus {
 			box-shadow: none;
+		}
+		+ button {
+			vertical-align: top;
 		}
 	}
 }
@@ -161,57 +203,68 @@ $bodyColor:       #fff;
 }
 
 .cdi-btn {
+	position: relative;
 	display: inline-block;
-	padding: 15px 20px;
-	font-size: 12px;
-	line-height: 20px;
-	text-transform: uppercase;
-	font-weight: bold;
-	border: none;
-	outline: none;
-	background: $defaultColor;
-	color: #fff;
-	cursor: pointer;
-	vertical-align: top;
-	border-radius: 5px;
-	transition: all 200ms linear;
+	font-size: 11px;
+	line-height: 18px;
 	text-decoration: none;
-	&:focus,
-	&:active {
-		box-shadow: none;
-		color: #fff;
+	padding: 4px 22px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	outline: none;
+	cursor: pointer;
+	transition: all 200ms linear;
+	border-color: $primary_outset_1 $primary_outset_2 $primary_outset_2 $primary_outset_1;
+	background-color: $primary_gradint_2;
+	color: #fff;
+	&:before {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		border-radius: 4px;
+		background-image: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+		content: '';
 	}
+
 	&:hover {
-		background: $defaultColorAlt;
-		color: #fff;
+		&:before {
+			background-image: linear-gradient(0deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+		}
 	}
-	&.primary {
-		background: $primaryColor;
+
+	&:active {
+		&:before {
+			opacity: 0;
+		}
+	}
+	&.btn-primary {
+		border-color: $primary_outset_1 $primary_outset_2 $primary_outset_2 $primary_outset_1;
+		background-color: $primary_gradint_2;
+		color: #fff;
 		&.disabled {
 			background: lighten( $primaryColor, 10% );
 			cursor: default;
 		}
-		&:hover {
-			background: $primaryColorAlt;
-		}
 	}
-	&.success {
-		background: $successColor;
-		&:hover {
-			background: $successColorAlt;
-		}
+	&.btn-success {
+		color: #fff;
+		border-color: $success_outset_1 $success_outset_2 $success_outset_2 $success_outset_1;
+		background-color: $success_gradint_2;
 	}
-	&.danger {
-		background: $dangerColor;
-		&:hover {
-			background: $dangerColorAlt;
-		}
+	&.btn-danger {
+		color: #fff;
+		border-color: $danger_outset_1 $danger_outset_2 $danger_outset_2 $danger_outset_1;
+		background-color: $danger_gradint_2;
 	}
-	&.warning {
-		background: $warningColor;
-		&:hover {
-			background: $warningColorAlt;
-		}
+	&.btn-warning {
+		color: #fff;
+		border-color: $warning_outset_1 $warning_outset_2 $warning_outset_2 $warning_outset_1;
+		background-color: $warning_gradint_2;
 	}
 	.dashicons,
 	.dashicons-before::before {
@@ -496,9 +549,9 @@ $bodyColor:       #fff;
 	}
 	&:before {
 		content: "";
-		width: 14px;
-		height: 14px;
-		margin: 0 0 0 -7px;
+		width: 12px;
+		height: 12px;
+		margin: 0 0 0 -6px;
 		background-color: rgb(255,255,255);
 		top: auto;
 		bottom: 0;
@@ -591,17 +644,17 @@ $bodyColor:       #fff;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 20px;
-	height: 20px;
-	margin: -13px 0 0 -13px;
+	width: 14px;
+	height: 14px;
+	margin: -9px 0 0 -10px;
 }
 .cdi-loader-alt {
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: 14px;
+	height: 14px;
 	animation: spin .7s linear infinite;
-	border: 3px solid #FFF;
-	border-top: 3px solid #3498DB;
+	border: 2px solid #FFF;
+	border-top: 2px solid #3498DB;
 	border-radius: 50%;
 	transition: opacity 300ms linear;
 	opacity: 0;
