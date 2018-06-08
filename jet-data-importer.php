@@ -5,7 +5,7 @@ Plugin URI: https://zemez.io
 Description: Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.
 Author: Zemez
 Author URI: https://zemez.io
-Version: 1.0.0
+Version: 1.0.1
 Text Domain: jet-data-importer
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
@@ -598,13 +598,18 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 		 */
 		public function register_assets() {
 
-			wp_register_style( 'jet-data-import', $this->assets_url( 'css/jet-data-import.css' ) );
+			wp_register_style(
+				'jet-data-import',
+				$this->assets_url( 'css/jet-data-import.css' ),
+				array(),
+				'1.0.1'
+			);
 
 			wp_register_script(
 				'jet-data-import',
 				$this->assets_url( 'js/jet-data-import.js' ),
 				array(),
-				'1.0.0',
+				'1.0.1',
 				true
 			);
 
@@ -612,7 +617,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				'jet-data-export',
 				$this->assets_url( 'js/jet-data-export.js' ),
 				array(),
-				'1.0.0',
+				'1.0.1',
 				true
 			);
 
