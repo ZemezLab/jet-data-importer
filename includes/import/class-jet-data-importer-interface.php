@@ -186,14 +186,17 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 
 			foreach ( jdi_tools()->server_params() as $param => $data ) {
 				$val = ini_get( $param );
-				$val = (int) $val;
+				$val = ini_get( $param );
 
-				if ( $val < $data['value'] ) {
+				$current_value = wp_convert_hr_to_bytes( $val );
+				$recommended_value = wp_convert_hr_to_bytes( $data['value'] . $data['units'] );
+
+				if ( $current_value < $recommended_value ) {
 					$current = sprintf(
 						$format,
 						$param,
 						'<strong>' . $data['value'] . $data['units'] . '</strong>',
-						'<strong>' . $val . $data['units'] . '</strong>'
+						'<strong>' . (int) $val . $data['units'] . '</strong>'
 					);
 
 					$messages .= '<div>' . $current . '</div>';
