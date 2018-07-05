@@ -2091,6 +2091,10 @@ class Jet_WXR_Importer extends WP_Importer {
 					$value = maybe_unserialize( $meta_item['value'] );
 				}
 
+				if ( '_elementor_data' === $key ) {
+					$value = wp_slash( $value );
+				}
+
 				add_post_meta( $post_id, $key, $value );
 				do_action( 'import_post_meta', $post_id, $key, $value );
 
