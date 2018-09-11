@@ -11,6 +11,7 @@
 		 * @hooked Jet_Data_Importer_Interface::check_server_params - 10;
 		 */
 		do_action( 'cherry-data-importer/before-messages' );
+
 	?>
 	<?php echo jdi_interface()->get_welcome_message(); ?>
 	<?php if ( jdi_interface()->is_advanced_import() ) : ?>

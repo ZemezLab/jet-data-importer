@@ -63,6 +63,14 @@ if ( ! class_exists( 'Jet_Data_Importer_Cache_Handler' ) ) {
 		 * @return array
 		 */
 		public function get( $key = null, $group = 'global' ) {}
+
+		/**
+		 * Write object cahe to static cache (if current handler requires this)
+		 *
+		 * @return void
+		 */
+		public function write_cache() {}
+
 	}
 
 }

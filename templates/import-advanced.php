@@ -3,9 +3,9 @@
  * Advanced import template
  */
 $item = ! empty( jdi_interface()->data['advanced-item'] ) ? jdi_interface()->data['advanced-item'] : false;
-$slug = ! empty( jdi_interface()->data['advanced-slug'] ) ? jdi_interface()->data['advanced-slug'] : false;
+$skin = ! empty( jdi_interface()->data['advanced-slug'] ) ? jdi_interface()->data['advanced-slug'] : false;
 
-if ( ! $item || ! $slug ) {
+if ( ! $item || ! $skin ) {
 	return;
 }
 
@@ -21,7 +21,11 @@ $min_path    = jdi_tools()->secure_path( $xml_min );
 $allow_types = jdi()->get_setting( array( 'import', 'allow_types' ) );
 
 ?>
-<div class="advanced-item" data-full="<?php echo $full_path; ?>" data-lite="<?php echo $min_path; ?>">
+<div class="advanced-item"
+	data-full="<?php echo $full_path; ?>"
+	data-lite="<?php echo $min_path; ?>"
+	data-skin="<?php echo $skin; ?>"
+>
 	<div class="advanced-item__thumb">
 		<?php
 			if ( $thumb ) {

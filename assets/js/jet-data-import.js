@@ -170,6 +170,7 @@
 				$type = $( '.advanced-item__type-checkbox input[type="checkbox"]', $item ),
 				url   = window.JetDataImportVars.advURLMask,
 				full  = $item.data( 'full' ),
+				skin  = $item.data( 'skin' ),
 				min   = $item.data( 'lite' );
 
 			$this.addClass( 'in-progress' );
@@ -179,6 +180,8 @@
 			} else {
 				url = url.replace( '<-file->', full );
 			}
+
+			url += '&skin=' + skin;
 
 			$( '.cdi-advanced-popup' ).removeClass( 'popup-hidden' ).data( 'url', url );
 

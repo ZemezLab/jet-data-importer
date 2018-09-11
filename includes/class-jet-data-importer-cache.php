@@ -103,6 +103,14 @@ if ( ! class_exists( 'Jet_Data_Importer_Cache' ) ) {
 
 			if ( ! session_id() ) {
 				$this->caching_method = 'file';
+			} else {
+				$this->caching_method = 'session';
+			}
+
+			$cache_handler = get_option( 'jdi_cache_handler', 'session' );
+
+			if ( $cache_handler ) {
+				$this->caching_method = $cache_handler;
 			}
 
 			return $this->caching_method;
@@ -150,6 +158,18 @@ if ( ! class_exists( 'Jet_Data_Importer_Cache' ) ) {
 		public function clear_cache( $group = null ) {
 			return $this->handler->clear_cache( $group );
 		}
+
+		/**
+		 * Write object cahce to static.
+		 *
+		 * @param  string $group Caching group to clear.
+		 * @return bool
+		 */
+		public function write_cache() {
+			return $this->handler->write_cache();
+		}
+
+
 
 		/**
 		 * Returns the instance.

@@ -121,6 +121,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$this->validate_request();
 
 			if ( empty( $_REQUEST['password'] ) ) {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'Password is empty', 'jet-data-importer' ),
 				) );
@@ -131,12 +133,16 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$data     = get_userdata( $user_id );
 
 			if ( wp_check_password( $password, $data->user_pass, $user_id ) ) {
+
 				jdi_tools()->clear_content();
+				jdi_cache()->write_cache();
 				wp_send_json_success( array(
 					'message' => esc_html__( 'Content successfully removed', 'jet-data-importer' ),
 					'slider'  => jdi_slider()->render( false ),
 				) );
 			} else {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'Entered password is invalid', 'jet-data-importer' ),
 				) );
@@ -339,6 +345,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 
 			jdi()->get_template( 'import.php' );
 
+			jdi_cache()->write_cache();
+
 		}
 
 		/**
@@ -409,12 +417,16 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 		private function validate_request() {
 
 			if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'jet-data-import' ) ) {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'You don\'t have permissions to do this', 'jet-data-importer' ),
 				) );
 			}
 
 			if ( ! current_user_can( 'import' ) ) {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'You don\'t have permissions to do this', 'jet-data-importer' ),
 				) );
@@ -440,6 +452,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			foreach ( $required as $field ) {
 
 				if ( ! isset( $_REQUEST[ $field ] ) ) {
+
+					jdi_cache()->write_cache();
 					wp_send_json_error( array(
 						'message' => sprintf(
 							esc_html__( '%s is missing in request', 'jet-data-importer' ), $field
@@ -484,6 +498,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				$data['redirect'] = jdi()->page_url( array( 'tab' => $this->slug, 'step' => 4 ) );
 			}
 
+			jdi_cache()->write_cache();
 			wp_send_json_success( $data );
 		}
 
@@ -497,6 +512,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$this->validate_request();
 
 			if ( empty( $_REQUEST['chunk'] ) ) {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'Chunk number is missing in request', 'jet-data-importer' ),
 				) );
@@ -568,6 +585,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 					break;
 			}
 
+			jdi_cache()->write_cache();
 			wp_send_json_success( $data );
 		}
 
@@ -650,16 +668,10 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 		public function get_remote_file( $file_url ) {
 
 			$filename        = basename( $file_url );
-			$upload_dir      = wp_upload_dir();
-			$upload_base_dir = $upload_dir['basedir'];
-			$base_path       = trailingslashit( $upload_base_dir ) . 'jet-skins/';
+			$base_path       = jdi_files_manager()->base_path();
 
-			if ( file_exists( $base_path . $filename ) ) {
+			if ( is_file( $base_path . $filename ) ) {
 				return $base_path . $filename;
-			}
-
-			if ( ! file_exists( $base_path ) ) {
-				mkdir( $base_path );
 			}
 
 			$tmpath = download_url( esc_url( $file_url ) );
@@ -900,6 +912,8 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$this->validate_request();
 
 			if ( ! isset( $_REQUEST['file'] ) ) {
+
+				jdi_cache()->write_cache();
 				wp_send_json_error( array(
 					'message' => esc_html__( 'XML file not passed', 'jet-data-importer' ),
 				) );
@@ -907,6 +921,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 
 			$path = str_replace( home_url( '/' ), ABSPATH, esc_url( $_REQUEST['file'] ) );
 
+			jdi_cache()->write_cache();
 			wp_send_json_success( array(
 				'path' => jdi_tools()->secure_path( $path ),
 			) );

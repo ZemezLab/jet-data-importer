@@ -5,7 +5,7 @@ Plugin URI: https://zemez.io
 Description: Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.
 Author: Zemez
 Author URI: https://zemez.io
-Version: 1.0.1
+Version: 1.1.0
 Text Domain: jet-data-importer
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
@@ -192,6 +192,14 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				76
 			);
 
+			$this->register_tab(
+				array(
+					'id'   => 'settings',
+					'name' => esc_html__( 'Settings', 'jet-data-importer' ),
+					'cb'   => array( $this, 'settings_page' ),
+				)
+			);
+
 			foreach ( $this->get_page_tabs() as $tab ) {
 
 				if ( empty( $tab['id'] ) || empty( $tab['name'] ) ) {
@@ -211,6 +219,22 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 
 			remove_submenu_page( $this->slug, $this->slug );
 
+		}
+
+		/**
+		 * Render settings page
+		 *
+		 * @return void
+		 */
+		public function settings_page() {
+
+			if ( isset( $_POST['jdi_cache_handler'] ) ) {
+				update_option( 'jdi_cache_handler', esc_attr( $_POST['jdi_cache_handler'] ), false );
+			}
+
+			ob_start();
+			$this->get_template( 'page-settings.php' );
+			return ob_get_clean();
 		}
 
 		/**
@@ -361,6 +385,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			require $this->path( 'includes/class-jet-data-importer-logger.php' );
 			require $this->path( 'includes/class-jet-data-importer-tools.php' );
 			require $this->path( 'includes/class-jet-data-importer-slider.php' );
+			require $this->path( 'includes/class-jet-data-importer-files-manager.php' );
 		}
 
 		/**
@@ -602,14 +627,14 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				'jet-data-import',
 				$this->assets_url( 'css/jet-data-import.css' ),
 				array(),
-				'1.0.1'
+				'1.1.0'
 			);
 
 			wp_register_script(
 				'jet-data-import',
 				$this->assets_url( 'js/jet-data-import.js' ),
 				array(),
-				'1.0.1',
+				'1.1.0',
 				true
 			);
 
@@ -617,7 +642,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 				'jet-data-export',
 				$this->assets_url( 'js/jet-data-export.js' ),
 				array(),
-				'1.0.1',
+				'1.1.0',
 				true
 			);
 
