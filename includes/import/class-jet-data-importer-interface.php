@@ -800,7 +800,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				return;
 			}
 
-			if ( 1 >= count( $files ) ) {
+			if ( 1 > count( $files ) ) {
 				return;
 			}
 

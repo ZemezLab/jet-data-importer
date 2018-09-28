@@ -431,7 +431,7 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			) );
 
 			foreach ( $allowed_settings as $type ) {
-				if ( ! empty( $this->external_config[ $type ] ) ) {
+				if ( isset( $this->external_config[ $type ] ) ) {
 
 					if ( in_array( $type, $rewrite ) ) {
 						$this->settings[ $type ] = $this->external_config[ $type ];
