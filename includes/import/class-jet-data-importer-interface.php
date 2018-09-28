@@ -835,7 +835,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$result = '<div class="import-file">';
 			$result .= '<input type="hidden" name="upload_file" class="import-file__input">';
 			$result .= '<input type="text" name="upload_file_nicename" class="import-file__placeholder">';
-			$result .= '<button class="cdi-btn primary" id="cherry-file-upload">';
+			$result .= '<button class="cdi-btn primary" id="jet-file-upload">';
 			$result .= esc_html__( 'Upload File', 'jet-data-importer' );
 			$result .= '</button>';
 
