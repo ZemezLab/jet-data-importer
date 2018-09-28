@@ -169,6 +169,10 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 		 */
 		public function secure_path( $file ) {
 
+			if ( false !== strpos( $file, '/wpcom' ) ) {
+				return base64_encode( $file );
+			}
+
 			if ( false === strpos( $file, ABSPATH ) ) {
 				return 'remote';
 			}
@@ -188,7 +192,13 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 				return false;
 			}
 
-			return ABSPATH . base64_decode( $file );
+			$file = base64_decode( $file );
+
+			if ( false !== strpos( $file, '/wpcom' ) ) {
+				return $file;
+			}
+
+			return ABSPATH . $file;
 		}
 
 		/**
