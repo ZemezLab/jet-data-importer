@@ -92,17 +92,28 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 				}
 
 				$new_data = preg_replace_callback(
-					'/\"id\":\"?(\d+)\"?,\"url\":\"(.*?)\"/',
+					'/(\"id\":\"?(\d+)\"?,\"url\":\"([^\"\']*?)\"|\"url\":\"([^\"\']*?)\",\"id\":\"?(\d+)\"?)/',
 					function( $match ) use ( $data ) {
 
-						if ( isset( $data[ $match[1] ] ) ) {
-							return sprintf(
-								'"id":%1$s,"url":%2$s',
-								$data[ $match[1] ],
-								json_encode( wp_get_attachment_url( $data[ $match[1] ] ) )
-							);
-						} else {
+						$id = false;
+
+						if ( ! empty( $match[1] ) ) {
+							$id = $match[1];
+						} elseif ( ! empty( $match[4] ) ) {
+							$id = $match[4];
+						}
+
+						if ( ! $id || ! isset( $data[ $id ] ) ) {
 							return $match[0];
+						} else {
+
+							$result = sprintf(
+								'"url":%2$s,"id":%1$s',
+								$data[ $id ],
+								json_encode( wp_get_attachment_url( $data[ $id ] ) )
+							);
+
+							return $result;
 						}
 
 					},

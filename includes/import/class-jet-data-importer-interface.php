@@ -398,7 +398,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				$total += absint( $count['image/jpeg'] );
 			}
 
-			if ( ! empty( $count['image/jpeg'] ) ) {
+			if ( ! empty( $count['image/png'] ) ) {
 				$total += absint( $count['image/png'] );
 			}
 
