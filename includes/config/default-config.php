@@ -18,7 +18,11 @@ $config = array(
 	'remap' => array(
 		'post_meta' => array(),
 		'term_meta' => array(),
-		'options'   => array(),
+		'options'   => array(
+			'jet_woo_builder',
+			'woocommerce_catalog_columns',
+			'woocommerce_catalog_rows',
+		),
 	),
 	'export' => array(
 		'message' => __( 'Export all content with Jet Data Export tool', 'jet-data-importer' ),
