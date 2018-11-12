@@ -214,7 +214,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 				return;
 			}
 
-			$heading = '<div class="cdi-server-messages__heading">' . esc_html__( 'Some parameters from your server don\'t meet the requirements:' ) . '</div>';
+			$heading = '<div class="cdi-server-messages__heading">' . esc_html__( 'Some parameters from your server don\'t meet the requirements:', 'jet-data-importer' ) . '</div>';
 
 			echo '<div class="cdi-server-messages">' . $heading . $messages . '</div>';
 		}
@@ -329,7 +329,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Interface' ) ) {
 			$importer = $this->get_importer();
 
 			if ( ! $importer ) {
-				_e( 'Error! Import file not found. Please contact our support team.', 'jet-theme-core' );
+				_e( 'Error! Import file not found. Please contact our support team.', 'jet-data-importer' );
 				return;
 			}
 

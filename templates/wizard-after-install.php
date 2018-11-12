@@ -31,10 +31,10 @@ $file = jdi_tools()->secure_path( $file );
 			<span class="tm-wizard-type__item-mask"></span>
 			<span class="tm-wizard-type__item-label">
 				<span class="tm-wizard-type__item-label-title"><?php
-					esc_html_e( 'Append demo content to my existing content', 'tm-wizard' );
+					esc_html_e( 'Append demo content to my existing content', 'jet-data-importer' );
 				?></span>
 				<span class="tm-wizard-type__item-label-desc"><?php
-					esc_html_e( 'If you have chosen this option, the sample data will be added to the current content of your theme.', 'tm-wizard' );
+					esc_html_e( 'If you have chosen this option, the sample data will be added to the current content of your theme.', 'jet-data-importer' );
 				?></span>
 			</span>
 		</label>
@@ -43,10 +43,10 @@ $file = jdi_tools()->secure_path( $file );
 			<span class="tm-wizard-type__item-mask"></span>
 			<span class="tm-wizard-type__item-label">
 				<span class="tm-wizard-type__item-label-title"><?php
-					esc_html_e( 'Replace my existing content with demo content', 'tm-wizard' );
+					esc_html_e( 'Replace my existing content with demo content', 'jet-data-importer' );
 				?></span>
 				<span class="tm-wizard-type__item-label-desc"><?php
-					esc_html_e( 'NB! If you want to install theme demo content, you agree that your current data will be replaced by the new demo content (sample data). If you want to save the current content of your theme, please choose Skip Data Installation.', 'tm-wizard' );
+					esc_html_e( 'NB! If you want to install theme demo content, you agree that your current data will be replaced by the new demo content (sample data). If you want to save the current content of your theme, please choose Skip Data Installation.', 'jet-data-importer' );
 				?></span>
 			</span>
 		</span>
@@ -57,10 +57,10 @@ $file = jdi_tools()->secure_path( $file );
 			<span class="tm-wizard-type__item-mask"></span>
 			<span class="tm-wizard-type__item-label">
 				<span class="tm-wizard-type__item-label-title"><?php
-					esc_html_e( 'Skip demo content installation', 'tm-wizard' );
+					esc_html_e( 'Skip demo content installation', 'jet-data-importer' );
 				?></span>
 				<span class="tm-wizard-type__item-label-desc"><?php
-					esc_html_e( 'If you have chosen this option, the sample data will not be installed on your theme and your current content will stay as it is.', 'tm-wizard' );
+					esc_html_e( 'If you have chosen this option, the sample data will not be installed on your theme and your current content will stay as it is.', 'jet-data-importer' );
 				?></span>
 			</span>
 		</label>
@@ -73,6 +73,6 @@ $file = jdi_tools()->secure_path( $file );
 	<input type="hidden" name="skin" value="<?php echo $skin; ?>">
 	<input type="hidden" name="xml_type" value="<?php echo $type; ?>">
 	<button class="btn btn-primary" data-wizard="confirm-install" data-loader="true" data-href=""><span class="text"><?php
-		esc_html_e( 'Next', 'tm-wizard' );
+		esc_html_e( 'Next', 'jet-data-importer' );
 	?></span><span class="tm-wizard-loader"><span class="tm-wizard-loader__spinner"></span></span></button>
 </form>

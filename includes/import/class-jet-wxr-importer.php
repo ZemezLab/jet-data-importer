@@ -670,7 +670,7 @@ class Jet_WXR_Importer extends WP_Importer {
 						// Bail now
 						return new WP_Error(
 							'wxr_importer.post.cannot_import_draft',
-							__( 'Cannot import auto-draft posts' ),
+							__( 'Cannot import auto-draft posts', 'jet-data-importer' ),
 							$data
 						);
 					}
@@ -1489,7 +1489,7 @@ class Jet_WXR_Importer extends WP_Importer {
 		if ( 'attachment' === $postdata['post_type'] ) {
 			if ( ! $this->options['fetch_attachments'] ) {
 				$this->logger->notice( sprintf(
-					__( 'Skipping attachment "%s", fetching attachments disabled' ),
+					__( 'Skipping attachment "%s", fetching attachments disabled', 'jet-data-importer' ),
 					$data['post_title']
 				) );
 
@@ -1684,7 +1684,7 @@ class Jet_WXR_Importer extends WP_Importer {
 
 		if ( is_wp_error( $user_id ) ) {
 			$this->logger->error( sprintf(
-				__( 'Failed to import user "%s"', 'wordpress-importer' ),
+				__( 'Failed to import user "%s"', 'jet-data-importer' ),
 				$userdata['user_login']
 			) );
 			$this->logger->debug( $user_id->get_error_message() );
@@ -1706,12 +1706,12 @@ class Jet_WXR_Importer extends WP_Importer {
 		$processed_user_slug[ $original_slug ] = $user_id;
 
 		$this->logger->info( sprintf(
-			__( 'Imported user "%s"', 'wordpress-importer' ),
+			__( 'Imported user "%s"', 'jet-data-importer' ),
 			$userdata['user_login']
 		) );
 
 		$this->logger->debug( sprintf(
-			__( 'User %d remapped to %d', 'wordpress-importer' ),
+			__( 'User %d remapped to %d', 'jet-data-importer' ),
 			$original_id,
 			$user_id
 		) );
@@ -1812,7 +1812,7 @@ class Jet_WXR_Importer extends WP_Importer {
 		$result = wp_insert_term( $data['name'], $data['taxonomy'], $termdata );
 		if ( is_wp_error( $result ) ) {
 			$this->logger->warning( sprintf(
-				__( 'Failed to import %s %s', 'wordpress-importer' ),
+				__( 'Failed to import %s %s', 'jet-data-importer' ),
 				$data['taxonomy'],
 				$data['name']
 			) );
@@ -1848,12 +1848,12 @@ class Jet_WXR_Importer extends WP_Importer {
 		jdi_cache()->update( 'terms', $remap_terms, 'requires_remapping' );
 
 		$this->logger->info( sprintf(
-			__( 'Imported "%s" (%s)', 'wordpress-importer' ),
+			__( 'Imported "%s" (%s)', 'jet-data-importer' ),
 			$data['name'],
 			$data['taxonomy']
 		) );
 		$this->logger->debug( sprintf(
-			__( 'Term %d remapped to %d', 'wordpress-importer' ),
+			__( 'Term %d remapped to %d', 'jet-data-importer' ),
 			$original_id,
 			$term_id
 		) );
