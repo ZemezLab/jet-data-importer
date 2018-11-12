@@ -95,6 +95,9 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 		 */
 		function __construct() {
 
+			// Internationalize the text strings used.
+			add_action( 'init', array( $this, 'lang' ), -999 );
+
 			add_action( 'init', array( $this, 'start_session' ) );
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_assets' ) );
@@ -175,6 +178,13 @@ if ( ! class_exists( 'Jet_Data_Importer' ) ) {
 			$this->load_import();
 			$this->load_export();
 
+		}
+
+		/**
+		 * Loads the translation files.
+		 */
+		public function lang() {
+			load_plugin_textdomain( 'jet-data-importer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jet Data Importer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 15:48+0200\n"
+"POT-Creation-Date: 2018-11-12 16:45+0200\n"
 "PO-Revision-Date: 2018-05-09 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
@@ -260,24 +260,24 @@ msgstr ""
 msgid "Could not open the file for parsing"
 msgstr ""
 
-#: jet-data-importer.php:186 jet-data-importer.php:187
-#: jet-data-importer.php:211
+#: jet-data-importer.php:196 jet-data-importer.php:197
+#: jet-data-importer.php:221
 msgid "Demo Content "
 msgstr ""
 
-#: jet-data-importer.php:198
+#: jet-data-importer.php:208
 msgid "Settings"
 msgstr ""
 
-#: jet-data-importer.php:652
+#: jet-data-importer.php:662
 msgid "Select or upload file with demo content"
 msgstr ""
 
-#: jet-data-importer.php:653
+#: jet-data-importer.php:663
 msgid "Select"
 msgstr ""
 
-#: jet-data-importer.php:658
+#: jet-data-importer.php:668
 msgid "Data processing error, please try again!"
 msgstr ""
 
