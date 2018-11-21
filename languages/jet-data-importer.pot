@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Jet Data Importer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 16:45+0200\n"
+"POT-Creation-Date: 2018-11-21 16:25+0200\n"
 "PO-Revision-Date: 2018-05-09 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
@@ -385,6 +385,10 @@ msgstr ""
 
 #: templates/import.php:38
 msgid "Tables"
+msgstr ""
+
+#: templates/page-settings.php:8
+msgid "Cache handler:"
 msgstr ""
 
 #: templates/page-settings.php:20

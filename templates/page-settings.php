@@ -5,7 +5,7 @@ $cache_handler = get_option( 'jdi_cache_handler', 'session' );
 ?>
 <div class="cdi-wrap">
 	<form method="post">
-		<label>Cache handler:</label><br>
+		<label><?php _e( 'Cache handler:', 'jet-data-importer' ); ?></label><br>
 		<select name="jdi_cache_handler" style="min-height: 34px; margin: 5px 0 0 0; width: 300px;"><?php
 			foreach ( array( 'session', 'file' ) as $val ) {
 				printf(
