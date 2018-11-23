@@ -1,13 +1,12 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jet Data Importer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 11:48+0200\n"
-"PO-Revision-Date: 2018-05-09 17:23+0200\n"
+"POT-Creation-Date: 2018-11-23 11:49+0200\n"
+"PO-Revision-Date: 2018-11-23 11:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
-"Language: en_US\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,416 +17,430 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.1.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: cherry-framework\n"
-"X-Poedit-SearchPathExcluded-1: node_modules\n"
 
 #: includes/class-jet-data-importer-tools.php:77
 msgid "Importing sample data"
-msgstr ""
+msgstr "Импортирование демо-контента"
 
 #: includes/class-jet-data-importer-tools.php:80
 msgid "Regenerating thumbnails"
-msgstr ""
+msgstr "Регенерация миниатюр"
 
 #: includes/class-jet-data-importer-tools.php:83
 msgid "Congratulations! You’re all Set!"
-msgstr ""
+msgstr "Поздравляем! Все готово!"
 
 #: includes/class-jet-data-importer-tools.php:86
 msgid "Select source to import"
-msgstr ""
+msgstr "Выберите источник для импорта"
 
 #: includes/config/default-config.php:28
 msgid "Export all content with Jet Data Export tool"
-msgstr ""
+msgstr "Экспортировать весь контент с помощью инструмента Jet Data Export"
 
 #: includes/config/default-config.php:35 templates/import-after.php:16
 msgid "View your site"
-msgstr ""
+msgstr "Посмотреть ваш сайт"
 
 #: includes/config/default-config.php:39
 msgid "Take a look at your site"
-msgstr ""
+msgstr "Посмотреть ваш сайт"
 
 #: includes/config/default-config.php:43
 msgid "Start editing"
-msgstr ""
+msgstr "Начать редактирование"
 
 #: includes/config/default-config.php:47
 msgid "Proceed to editing pages"
-msgstr ""
+msgstr "Перейти к редактированию страниц"
 
 #: includes/config/default-config.php:51
 msgid "Check documentation"
-msgstr ""
+msgstr "Проверить документацию"
 
 #: includes/config/default-config.php:55
 msgid "Get more info from documentation"
-msgstr ""
+msgstr "Получить дополнительную информацию из документации"
 
 #: includes/config/default-config.php:59
 msgid "Knowledge Base"
-msgstr ""
+msgstr "База знаний"
 
 #: includes/config/default-config.php:63
 msgid "Access the vast knowledge base"
-msgstr ""
+msgstr "Доступ к огромной базе знаний"
 
 #: includes/config/default-config.php:67
 msgid "Community"
-msgstr ""
+msgstr "Сообщество"
 
 #: includes/config/default-config.php:71
 msgid "Join community to stay tuned to the latest news"
-msgstr ""
+msgstr "Присоединиться к сообществу, чтобы быть в курсе последних новостей"
 
 #: includes/export/class-jet-data-export-interface.php:47
 #: templates/export.php:8
 msgid "Export"
-msgstr ""
+msgstr "Экспортировать"
 
 #: includes/import/class-jet-data-importer-interface.php:127
 msgid "Password is empty"
-msgstr ""
+msgstr "Поле с паролем пусто"
 
 #: includes/import/class-jet-data-importer-interface.php:140
 msgid "Content successfully removed"
-msgstr ""
+msgstr "Контент успешно удален"
 
 #: includes/import/class-jet-data-importer-interface.php:147
 msgid "Entered password is invalid"
-msgstr ""
+msgstr "Введен неверный пароль"
 
 #: includes/import/class-jet-data-importer-interface.php:191
 #, php-format
 msgid "%1$s: %2$s required, yours - %3$s"
-msgstr ""
+msgstr "%1$s: %2$s требуется, ваш - %3$s"
 
 #: includes/import/class-jet-data-importer-interface.php:217
 msgid "Some parameters from your server don't meet the requirements:"
-msgstr ""
+msgstr "Некоторые параметры вашего сервера не отвечают требованиям:"
 
 #: includes/import/class-jet-data-importer-interface.php:250
 msgid "Import"
-msgstr ""
+msgstr "Импортировать"
 
 #: includes/import/class-jet-data-importer-interface.php:332
 msgid "Error! Import file not found. Please contact our support team."
-msgstr ""
+msgstr "Ошибка! Файл импорта не найден. Обратитесь в нашу службу поддержки."
 
 #: includes/import/class-jet-data-importer-interface.php:423
 #: includes/import/class-jet-data-importer-interface.php:431
 msgid "You don't have permissions to do this"
-msgstr ""
+msgstr "Эта опция недоступна"
 
 #: includes/import/class-jet-data-importer-interface.php:459
 #, php-format
 msgid "%s is missing in request"
-msgstr ""
+msgstr "%s отсутствует в запросе"
 
 #: includes/import/class-jet-data-importer-interface.php:518
 msgid "Chunk number is missing in request"
-msgstr ""
+msgstr "Большое количество данных пропущено в запросе"
 
 #: includes/import/class-jet-data-importer-interface.php:748
 msgid "Upload XML file with demo content"
-msgstr ""
+msgstr "Загрузить XML-файл с демо-контентом"
 
 #: includes/import/class-jet-data-importer-interface.php:752
 msgid "We found 1 XML file with demo content in your theme, install it?"
-msgstr ""
+msgstr "Мы нашли 1 XML-файл с демо-контентом в вашей теме, установить его?"
 
 #: includes/import/class-jet-data-importer-interface.php:757
 #, php-format
 msgid ""
 "We found %s XML files in your theme. Please select one of them to install"
 msgstr ""
+"Мы нашли %s XML-файлов в вашей теме. Выберите один из них, чтобы установить"
 
 #: includes/import/class-jet-data-importer-interface.php:839
 msgid "Upload File"
-msgstr ""
+msgstr "Загрузить файл"
 
 #: includes/import/class-jet-data-importer-interface.php:895
 msgid ""
 "You don't have permissions to replace content, please re-enter with "
 "admiistrator account"
 msgstr ""
+"Вы не можете заменить содержание, пожалуйста войдите с аккаунта "
+"администратора"
 
 #: includes/import/class-jet-data-importer-interface.php:918
 msgid "XML file not passed"
-msgstr ""
+msgstr "XML-файл не был принят"
 
 #: includes/import/class-jet-wxr-importer.php:673
 msgid "Cannot import auto-draft posts"
-msgstr ""
+msgstr "Невозможно импортировать авто-эскизы публикаций"
 
 #: includes/import/class-jet-wxr-importer.php:1124
 msgid "Sidebar does not exist in theme (using Inactive)"
-msgstr ""
+msgstr "Боковая панель не существует в теме (с использованием Inactive)"
 
 #: includes/import/class-jet-wxr-importer.php:1149
 msgid "Site does not support widget"
-msgstr ""
+msgstr "Сайт не поддерживает виджет"
 
 #: includes/import/class-jet-wxr-importer.php:1185
 msgid "Widget already exists"
-msgstr ""
+msgstr "Виджет уже существует"
 
 #: includes/import/class-jet-wxr-importer.php:1246
 msgid "Imported"
-msgstr ""
+msgstr "Импортировано"
 
 #: includes/import/class-jet-wxr-importer.php:1249
 msgid "Imported to Inactive"
-msgstr ""
+msgstr "Импортировано в Inactive"
 
 #: includes/import/class-jet-wxr-importer.php:1256
 msgid "No Title"
-msgstr ""
+msgstr "Без названия"
 
 #: includes/import/class-jet-wxr-importer.php:1401
 #, php-format
 msgid "Failed to import \"%s\": Invalid post type %s"
-msgstr ""
+msgstr "Не удалось импортировать «%s»: недопустимый тип публикации %s"
 
 #: includes/import/class-jet-wxr-importer.php:1412
 #, php-format
 msgid "%s \"%s\" already exists."
-msgstr ""
+msgstr "%s \"%s\" уже существуют."
 
 #: includes/import/class-jet-wxr-importer.php:1492
 #, php-format
 msgid "Skipping attachment \"%s\", fetching attachments disabled"
-msgstr ""
+msgstr "Пропустить вложение «%s», отключить привязку вложений"
 
 #: includes/import/class-jet-wxr-importer.php:1508
 #, php-format
 msgid "Failed to import \"%s\" (%s)"
-msgstr ""
+msgstr "Не удалось импортировать «%s» (%s)"
 
 #: includes/import/class-jet-wxr-importer.php:1545
 #: includes/import/class-jet-wxr-importer.php:1851
 #, php-format
 msgid "Imported \"%s\" (%s)"
-msgstr ""
+msgstr "Импортированы «%s» (%s)"
 
 #: includes/import/class-jet-wxr-importer.php:1550
 #, php-format
 msgid "Post %d remapped to %d"
-msgstr ""
+msgstr "Публикация %d переназначена в %d"
 
 #: includes/import/class-jet-wxr-importer.php:1687
 #, php-format
 msgid "Failed to import user \"%s\""
-msgstr ""
+msgstr "Не удалось импортировать пользователя «%s»"
 
 #: includes/import/class-jet-wxr-importer.php:1709
 #, php-format
 msgid "Imported user \"%s\""
-msgstr ""
+msgstr "Импортирован пользователь «%s»"
 
 #: includes/import/class-jet-wxr-importer.php:1714
 #, php-format
 msgid "User %d remapped to %d"
-msgstr ""
+msgstr "Пользователь%d переназначен на %d"
 
 #: includes/import/class-jet-wxr-importer.php:1815
 #, php-format
 msgid "Failed to import %s %s"
-msgstr ""
+msgstr "Не удалось импортировать %s %s"
 
 #: includes/import/class-jet-wxr-importer.php:1856
 #, php-format
 msgid "Term %d remapped to %d"
-msgstr ""
+msgstr "Категория %d переназначена на %d"
 
 #: includes/import/class-jet-wxr-importer.php:2278
 msgid "Invalid file type"
-msgstr ""
+msgstr "Неверный тип файла"
 
 #: includes/import/class-jet-wxr-importer.php:2358
 msgid "Zero size file downloaded"
-msgstr ""
+msgstr "Загружен файл, не содержащий данных"
 
 #: includes/import/class-jet-wxr-importer.php:2367
 #, php-format
 msgid "Remote file is too large, limit is %s"
-msgstr ""
+msgstr "Удаленный файл слишком большой, ограничение %s"
 
 #: includes/import/class-jet-wxr-importer.php:2536
 msgid "Could not open the file for parsing"
-msgstr ""
+msgstr "Не удалось открыть файл для разбора"
 
 #: jet-data-importer.php:196 jet-data-importer.php:197
 #: jet-data-importer.php:221
 msgid "Demo Content "
-msgstr ""
+msgstr "Демо-контент "
 
 #: jet-data-importer.php:208
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: jet-data-importer.php:662
 msgid "Select or upload file with demo content"
-msgstr ""
+msgstr "Выберите или загрузите файл с демо-контентом"
 
 #: jet-data-importer.php:663
 msgid "Select"
-msgstr ""
+msgstr "Выбрать"
 
 #: jet-data-importer.php:668
 msgid "Data processing error, please try again!"
-msgstr ""
+msgstr "Ошибка обработки данных, повторите попытку!"
 
 #: templates/advanced-popup.php:8
 msgid "Attention!"
-msgstr ""
+msgstr "Внимание!"
 
 #: templates/advanced-popup.php:9 templates/wizard-after-install.php:26
 msgid ""
 "We are ready to install demo data. Do you want to append demo content to "
 "your existing content or completely rewrite it?"
 msgstr ""
+"Мы готовы установить демо-контент. Вы хотите добавить демо-контент к уже "
+"существующему контенту, или полностью заменить его?"
 
 #: templates/advanced-popup.php:15 templates/wizard-after-install.php:34
 msgid "Append demo content to my existing content"
-msgstr ""
+msgstr "Добавить демо-контент к текущему"
 
 #: templates/advanced-popup.php:22 templates/wizard-after-install.php:46
 msgid "Replace my existing content with demo content"
-msgstr ""
+msgstr "Заменить мой текущий контент демо-контентом"
 
 #: templates/advanced-popup.php:28
 msgid "NOTE:"
-msgstr ""
+msgstr "Внимание:"
 
 #: templates/advanced-popup.php:29
 msgid ""
 "This option will remove all your existing content - posts, pages, "
 "attachments, terms and comments"
 msgstr ""
+"Эта опция удалит все существующее содержимое - публикации, страницы, "
+"вложения, категории и комментарии"
 
 #: templates/advanced-popup.php:33
 msgid "Start Install"
-msgstr ""
+msgstr "Начать установку"
 
 #: templates/import-advanced.php:40
 msgid "Recommended Plugins:"
-msgstr ""
+msgstr "Рекомендуемые плагины:"
 
 #: templates/import-advanced.php:56
 msgid "Optimize Demo Content"
-msgstr ""
+msgstr "Оптимизировать демо-контент"
 
 #: templates/import-advanced.php:58
 msgid ""
 "Please select this option to install light version of demo content. "
 "Recommended for slow severs and shared web hosts"
 msgstr ""
+"Выберите этот вариант, чтобы установить облегченную версию демо-контента. "
+"Рекомендуется для медленных серверов и совместных веб-узлов"
 
 #: templates/import-advanced.php:63
 msgid "Install Demo"
-msgstr ""
+msgstr "Установить демо"
 
 #: templates/import-advanced.php:66
 msgid "View Demo"
-msgstr ""
+msgstr "Просмотреть демо"
 
 #: templates/import-after.php:8
 msgid "Don’t know from where to start? Let us help you!"
-msgstr ""
+msgstr "Не знаете с чего начать? Позвольте нам помочь вам!"
 
 #: templates/import-after.php:20
 msgid "See what you get"
-msgstr ""
+msgstr "Посмотрите, что получается"
 
 #: templates/import-before.php:23
 msgid "or"
-msgstr ""
+msgstr "или"
 
 #: templates/import-before.php:30
 msgid "Start import"
-msgstr ""
+msgstr "Начать импорт"
 
 #: templates/import.php:23
 msgid "Import Summary"
-msgstr ""
+msgstr "Общие данные импорта"
 
 #: templates/import.php:24
 msgid "Completed"
-msgstr ""
+msgstr "Завершено"
 
 #: templates/import.php:25
 msgid "Progress"
-msgstr ""
+msgstr "Прогресс"
 
 #: templates/import.php:33
 msgid "Posts"
-msgstr ""
+msgstr "Публикации"
 
 #: templates/import.php:34
 msgid "Authors"
-msgstr ""
+msgstr "Авторы"
 
 #: templates/import.php:35
 msgid "Comments"
-msgstr ""
+msgstr "Комментарии"
 
 #: templates/import.php:36
 msgid "Media"
-msgstr ""
+msgstr "Медиа"
 
 #: templates/import.php:37
 msgid "Terms"
-msgstr ""
+msgstr "Категории"
 
 #: templates/import.php:38
 msgid "Tables"
-msgstr ""
+msgstr "Таблицы"
 
 #: templates/page-settings.php:8
 msgid "Cache handler:"
-msgstr ""
+msgstr "Обработчик кэша"
 
 #: templates/page-settings.php:20
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: templates/regenerate.php:9
 msgid "Starting process, please wait few seconds..."
-msgstr ""
+msgstr "Запуск процесса, подождите несколько секунд ..."
 
 #: templates/remove-content-form.php:9
 msgid ""
 "Please, enter your WordPress user password to confirm and start content "
 "replacing."
 msgstr ""
+"Пожалуйста, введите пароль пользователя WordPress, чтобы подтвердить и "
+"начать замену контента."
 
 #: templates/remove-content-form.php:12
 msgid ""
 "NOTE: All your content will be replaced (posts, pages, comments, attachments "
 "and terms)"
 msgstr ""
+"Внимание: весь ваш контент будет заменен (публикации, страницы, комментарии, "
+"вложения и категории)"
 
 #: templates/remove-content-form.php:16
 msgid "Please, enter your password"
-msgstr ""
+msgstr "Пожалуйста, введите пароль"
 
 #: templates/remove-content-form.php:18
 msgid "Import Content"
-msgstr ""
+msgstr "Импортировать контент"
 
 #: templates/wizard-after-install.php:24
 msgid "We're almost there!"
-msgstr ""
+msgstr "Мы почти на месте!"
 
 #: templates/wizard-after-install.php:37
 msgid ""
 "If you have chosen this option, the sample data will be added to the current "
 "content of your theme."
 msgstr ""
+"Если вы выбрали этот вариант, демо-контент будет добавлен к текущему "
+"контенту вашей темы."
 
 #: templates/wizard-after-install.php:49
 msgid ""
@@ -435,17 +448,23 @@ msgid ""
 "data will be replaced by the new demo content (sample data). If you want to "
 "save the current content of your theme, please choose Skip Data Installation."
 msgstr ""
+"Внимание! Если вы хотите установить демо-контент темы, вы соглашаетесь с "
+"тем, что ваш текущий контент будет заменен новым (демонстрационным). Если вы "
+"хотите сохранить текущий контент своей темы, выберите «Пропустить установку "
+"демо-контента»."
 
 #: templates/wizard-after-install.php:60
 msgid "Skip demo content installation"
-msgstr ""
+msgstr "Пропустить установку демо-контента"
 
 #: templates/wizard-after-install.php:63
 msgid ""
 "If you have chosen this option, the sample data will not be installed on "
 "your theme and your current content will stay as it is."
 msgstr ""
+"Если вы выбрали этот вариант, демо-контент не будет установлен в вашу тему, "
+"и ваш текущий контент останется прежним."
 
 #: templates/wizard-after-install.php:76
 msgid "Next"
-msgstr ""
+msgstr "Далее"
