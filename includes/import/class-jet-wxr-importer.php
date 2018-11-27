@@ -1041,7 +1041,10 @@ class Jet_WXR_Importer extends WP_Importer {
 
 			$this->process_single_table( $table, $values );
 			$this->update_processed_summary( 'tables' );
+
 		}
+
+		do_action( 'jet-data-importer/import/after-import-tables' );
 
 	}
 

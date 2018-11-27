@@ -209,6 +209,14 @@ if ( ! class_exists( 'Jet_WXR_Exporter' ) ) {
 
 			$user_tables = jdi()->get_setting( array( 'export', 'tables' ) );
 
+			if ( ! is_array( $user_tables ) ) {
+				$user_tables = array();
+			}
+
+			if ( class_exists( 'WooCommerce' ) && ! in_array( 'woocommerce_attribute_taxonomies', $user_tables ) ) {
+				$user_tables[] = 'woocommerce_attribute_taxonomies';
+			}
+
 			if ( empty( $user_tables ) ) {
 				return;
 			}

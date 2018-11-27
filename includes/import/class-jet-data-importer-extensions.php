@@ -39,6 +39,18 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 
 			add_action( 'jet-data-importer/import/before-options-processing', array( $this, 'set_container_width' ) );
 			add_action( 'jet-data-importer/import/after-options-processing', array( $this, 'set_required_options' ) );
+
+			add_action( 'jet-data-importer/import/after-import-tables', array( $this, 'clear_woo_transients' ) );
+
+		}
+
+		/**
+		 * Delete WooCommerce-related transients after new tables are imported
+		 *
+		 * @return void
+		 */
+		public function clear_woo_transients() {
+			delete_transient( 'wc_attribute_taxonomies' );
 		}
 
 		/**
