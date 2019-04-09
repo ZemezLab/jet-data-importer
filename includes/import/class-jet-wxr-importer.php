@@ -2108,7 +2108,7 @@ class Jet_WXR_Importer extends WP_Importer {
 					$value = wp_slash( $value );
 				}
 
-				if ( '_form_data' === $key ) {
+				if ( in_array( $key, array( '_form_data', '_notifications_data' ) ) ) {
 					update_post_meta( $post_id, $key, $value );
 				} else {
 					add_post_meta( $post_id, $key, $value );
