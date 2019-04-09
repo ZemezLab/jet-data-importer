@@ -2098,6 +2098,7 @@ class Jet_WXR_Importer extends WP_Importer {
 			}
 
 			if ( $key ) {
+
 				// export gets meta straight from the DB so could have a serialized string
 				if ( ! $value ) {
 					$value = maybe_unserialize( $meta_item['value'] );
@@ -2107,7 +2108,12 @@ class Jet_WXR_Importer extends WP_Importer {
 					$value = wp_slash( $value );
 				}
 
-				add_post_meta( $post_id, $key, $value );
+				if ( '_form_data' === $key ) {
+					update_post_meta( $post_id, $key, $value );
+				} else {
+					add_post_meta( $post_id, $key, $value );
+				}
+
 				do_action( 'import_post_meta', $post_id, $key, $value );
 
 				// if the post has a featured image, take note of this in case of remap
