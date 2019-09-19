@@ -1,13 +1,13 @@
 <?php
-/*
-Plugin Name: Jet Data Importer
-Plugin URI: https://zemez.io
-Description: Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.
-Author: Zemez
-Author URI: https://zemez.io
-Version: 1.2.2
-Text Domain: jet-data-importer
-License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+/**
+ * Plugin Name: Jet Data Importer
+ * Plugin URI: https://crocoblock.com
+ * Description: Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.
+ * Author: Zemez
+ * Author URI:
+ * Version: 1.2.2
+ * Text Domain: jet-data-importer
+ * License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
 // If this file is called directly, abort.
