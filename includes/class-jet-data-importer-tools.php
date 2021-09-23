@@ -244,6 +244,7 @@ if ( ! class_exists( 'Jet_Data_Importer_Tools' ) ) {
 
 			$options = apply_filters( 'jet-data-importer/clear-options-on-remove', array(
 				'sidebars_widgets',
+				'elementor_active_kit',
 			) );
 
 			foreach ( $options as $option ) {

@@ -75,6 +75,8 @@ if ( ! class_exists( 'Jet_WXR_Exporter' ) ) {
 					'jet_site_conditions',
 					'elementor_container_width',
 					'jet-elements-settings',
+					'elementor_active_kit',
+					'elementor_cpt_support',
 				) );
 
 				$user_options = jdi()->get_setting( array( 'export', 'options' ) );

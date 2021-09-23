@@ -49,7 +49,9 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'postprocess_posts' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_thumbs' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_pages_posts' ) );
+			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_elementor_active_kit' ) );
 			add_action( 'jet-data-importer/import/remap-posts', array( $this, 'process_home_page' ) );
+
 
 			// Manipulations with terms remap array
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_term_parents' ) );
@@ -57,6 +59,27 @@ if ( ! class_exists( 'Jet_Data_Importer_Callbacks' ) ) {
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_nav_menu_widgets' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_elementor_pages_terms' ) );
 			add_action( 'jet-data-importer/import/remap-terms', array( $this, 'process_home_page' ) );
+
+		}
+
+		public function process_elementor_active_kit( $data ) {
+
+			$active_kit_id = get_option( 'elementor_active_kit' );
+
+			if ( ! $active_kit_id ) {
+
+				if ( class_exists( '\Elementor\Core\Kits\Manager' ) ) {
+					\Elementor\Core\Kits\Manager::create_default_kit();
+				}
+
+				return;
+			}
+
+			$new_id = isset( $data[ $active_kit_id ] ) ? $data[ $active_kit_id ] : false;
+
+			if ( $new_id ) {
+				update_option( 'elementor_active_kit', $new_id );
+			}
 
 		}
 

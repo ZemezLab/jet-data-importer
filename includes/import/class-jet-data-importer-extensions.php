@@ -39,9 +39,23 @@ if ( ! class_exists( 'Jet_Data_Importer_Extensions' ) ) {
 
 			add_action( 'jet-data-importer/import/before-options-processing', array( $this, 'set_container_width' ) );
 			add_action( 'jet-data-importer/import/after-options-processing', array( $this, 'set_required_options' ) );
+			add_action( 'jet-data-importer/import/before-options-processing', array( $this, 'remove_elementor_kit_actions' ) );
 
 			add_action( 'jet-data-importer/import/after-import-tables', array( $this, 'clear_woo_transients' ) );
 
+		}
+
+		/**
+		 * Remove elementor kit actions to prevent PHP fatal error.
+		 */
+		public function remove_elementor_kit_actions() {
+
+			if ( ! class_exists( '\Elementor\Core\Kits\Manager' ) ) {
+				return;
+			}
+
+			remove_all_actions( 'update_option_blogname' );
+			remove_all_actions( 'update_option_blogdescription' );
 		}
 
 		/**
